@@ -9,6 +9,7 @@ Phát triển bởi thầy Hợi - Trường Tiểu học Bảo Đài 2, TP Bắ
 - `index.html`: giao diện
 - `style.css`: kiểu dáng
 - `app.js`: toàn bộ chức năng
+- `fonts/`: các phông chữ (HP001 4 hàng, 5 hàng, UTM Avo). Khi đưa lên GitHub phải tải cả thư mục này
 - `logo.png`: logo (muốn đổi logo, chép ảnh vuông mới đè lên, giữ đúng tên `logo.png`)
 
 ## Đưa lên GitHub Pages

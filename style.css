@@ -1,3 +1,14 @@
+@font-face{font-family:"HP001-4hang";src:url("fonts/HP001_4_hang_normal.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"HP001-4hang";src:url("fonts/HP001_4_hang_bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"HP001-5hang";src:url("fonts/HP001_5_hang_normal.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"HP001-5hang";src:url("fonts/HP001_5_hang_bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"HP001-4hang-1oly";src:url("fonts/HP001_4_hang_1_o_ly.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"HP001-4hang-2oly";src:url("fonts/HP001_4_hang_2_o_ly.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"HP001-5hang-1oly";src:url("fonts/HP001_5_hang_1_o_ly.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"UTM-Avo";src:url("fonts/UTM_Avo.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"UTM-Avo";src:url("fonts/UTM_AvoBold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"UTM-Avo";src:url("fonts/UTM_AvoItalic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"UTM-Avo";src:url("fonts/UTM_AvoBold_Italic.ttf") format("truetype");font-weight:700;font-style:italic;font-display:swap}
 :root{--bg:#eef1f5;--desk:#dde3ec;--fg:#1b2433;--card:#fff;--bd:#d9dee7;--ac:#1f5fa8;--acd:#154a86;--soft:#e8f0fa;--mut:#667085;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151b;--desk:#0b0e12;--fg:#e8ecf2;--card:#1a2029;--bd:#2d3644;--ac:#6aa8ee;--acd:#9cc4f5;--soft:#1e2a3b;--mut:#9aa5b8}}
 :root[data-theme="dark"]{--bg:#11151b;--desk:#0b0e12;--fg:#e8ecf2;--card:#1a2029;--bd:#2d3644;--ac:#6aa8ee;--acd:#9cc4f5;--soft:#1e2a3b;--mut:#9aa5b8}
@@ -8,7 +19,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-appl
 .top{display:flex;align-items:center;gap:14px;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--bd)}
 .top img,.logo-fb{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--ac)}
 .logo-fb{display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--soft)}
-.top h1{margin:0;padding:0;font:700 23px/1.2 Mali,system-ui,sans-serif;color:var(--acd)}
+.top h1{margin:0;padding:0;font:700 23px/1.2 "UTM-Avo",system-ui,sans-serif;color:var(--acd)}
 .sub{font-size:13.5px;color:var(--mut);margin-top:2px}
 
 .wrap{padding:16px 20px 8px;max-width:1500px;margin:0 auto}

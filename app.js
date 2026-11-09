@@ -1,7 +1,9 @@
 const $=id=>document.getElementById(id);
 const PW=612,PH=792,K=2;
 const GR={mau:{sy:98,x0:80,x1:574},ke:{sy:60,x0:48,x1:566},vuong:{sy:50,x0:48,x1:566},trang:{sy:50,x0:48,x1:566},anh:{sy:50,x0:48,x1:566}};
-const DEF={text:'Soạn mẫu chữ cho lớp 1 cùng thầy Hợi',font:'Mali',size:56,lh:72,dy:0,ls:0,mode:'solid',grid:'mau',sp:'ink'};
+const FP={'HP001-4hang':{size:36,sp:'font'},'HP001-4hang-1oly':{size:36,sp:'font'},'HP001-4hang-2oly':{size:36,sp:'font'},'HP001-5hang':{size:36,sp:'font'},'HP001-5hang-1oly':{size:36,sp:'font'},'UTM-Avo':{size:28,sp:'ink'}};
+const DEF={text:'Soạn mẫu chữ cho lớp 1 cùng thầy Hợi',font:'HP001-4hang',size:36,lh:72,dy:0,ls:0,mode:'solid',grid:'mau',sp:'font'};
+let upN=0;
 let S=Object.assign({},DEF,{st:[]}),O={},SEL=[],G=[],bg=null,drag=null,fsrc='cv';
 const cv=$('cv'),cx=cv.getContext('2d'),mc=document.createElement('canvas').getContext('2d');
 const HF=[[0,0],[.5,0],[1,0],[1,.5],[1,1],[.5,1],[0,1],[0,.5]];
@@ -21,7 +23,9 @@ function layout(){
     if(c==='\n')return{a:0,dx:0,st};
     if(c===' ')return{a:Math.max(1,(ink?S.size*.32:mc.measureText(' ').width)+S.ls),dx:0,st};
     const m=mc.measureText(c);
-    if(!ink)return{a:Math.max(1,m.width+S.ls),dx:0,st};
+    if(!ink){let w=m.width;const nx=t[i+1];
+      if(nx&&nx!==' '&&nx!=='\n'&&(S.st[i+1]|0)===st)w=mc.measureText(c+nx).width-mc.measureText(nx).width;
+      return{a:Math.max(1,w+S.ls),dx:0,st}}
     const l=-m.actualBoundingBoxLeft,w=Math.max(m.actualBoundingBoxRight-l,0),cell=Math.max(w,S.size*.16);
     return{a:Math.max(1,cell+S.size*.12+S.ls),dx:(cell-w)/2-l,st};
   });
@@ -235,12 +239,12 @@ document.addEventListener('keydown',e=>{
 });
 ['size','lh','ls','dy'].forEach(k=>$(k).addEventListener('input',e=>{S[k]=+e.target.value;$('v_'+k).textContent=S[k];refresh()}));
 $('size').addEventListener('change',loadFont);
-$('font').addEventListener('change',e=>{S.font=e.target.value;loadFont()});
+$('font').addEventListener('change',e=>{S.font=e.target.value;const P=FP[S.font];if(P){S.size=P.size;S.sp=P.sp;syncUI()}loadFont()});
 $('mode').addEventListener('change',e=>{S.mode=e.target.value;refresh()});
 $('grid').addEventListener('change',e=>{S.grid=e.target.value;refresh()});
 $('fontf').addEventListener('change',async e=>{
   const f=e.target.files[0];if(!f)return;
-  try{const n='Phông tải lên '+(document.querySelectorAll('#font option').length-5),ff=new FontFace(n,await f.arrayBuffer());
+  try{const n='Phông tải lên '+(++upN),ff=new FontFace(n,await f.arrayBuffer());
     await ff.load();document.fonts.add(ff);const op=new Option(f.name,n);$('font').add(op);$('font').value=n;S.font=n;loadFont();msg('Đã nạp phông '+f.name)}
   catch(err){msg('Không đọc được file phông chữ này.')}
 });
@@ -370,7 +374,7 @@ function plist(){
 function applyData(d){
   if(!d||!d.S)return false;
   S=Object.assign({},DEF,d.S,{st:Array.isArray(d.S.st)?d.S.st.slice():[]});if(S.grid==='anh')S.grid='mau';O=d.O||{};SEL=[];
-  if(![...$('font').options].some(o=>o.value===S.font))S.font='Mali';
+  if(![...$('font').options].some(o=>o.value===S.font))S.font=DEF.font;
   syncUI();loadFont();return true;
 }
 $('psave').onclick=()=>{

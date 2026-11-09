@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Soạn chữ mẫu trên giấy ô li - thầy Hợi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Soạn mẫu chữ cho lớp 1 cùng thầy Hợi - Trường Tiểu học Bảo Đài 2, TP Bắc Ninh">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,700;1,400;1,700&family=Itim&family=Patrick+Hand&family=Dancing+Script:wght@500;700&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><img id="logo" src="logo.png" alt="Logo" width="56" height="56" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'logo-fb',textContent:'✏️'}))"><div><h1>Soạn chữ mẫu trên giấy ô li</h1><div class="sub">Soạn mẫu chữ cho lớp 1 cùng thầy Hợi</div></div></header>
+<div class="wrap">
+<div class="app">
+<aside class="side">
+<nav class="tabs">
+  <button class="on" data-t="t1">1. Giấy kẻ</button>
+  <button data-t="t2">2. Nội dung</button>
+  <button data-t="t3">3. Chỉnh cả trang</button>
+  <button data-t="t4">4. Chữ đang chọn</button>
+  <button data-t="t5">5. Xuất file</button>
+  <button data-t="t6">6. Lưu</button>
+</nav>
+<div class="panel">
+  <div class="card cols on" id="t1">
+    <div class="f"><label>Loại giấy kẻ</label>
+      <select id="grid">
+        <option value="mau">Ô li (giống file mẫu)</option>
+        <option value="ke">Dòng kẻ ngang</option>
+        <option value="vuong">Ô vuông nhỏ</option>
+        <option value="trang">Giấy trắng</option>
+        <option value="anh" hidden>Giấy kẻ tải lên</option>
+      </select></div>
+    <div class="f"><label>Hoặc tải giấy kẻ của bạn (DOCX, PNG, JPG)</label>
+      <input type="file" id="bgf" accept="image/*,.docx,.doc"></div>
+  </div>
+  <div class="card cols" id="t2">
+    <div class="f"><label>Nội dung cần viết</label><textarea id="text" placeholder="Nhập nội dung cần viết..."></textarea></div>
+    <div class="f"><label>Định dạng: bôi đen chữ trong ô trên (hoặc chọn chữ trên trang) rồi bấm</label><div class="fmt"><button data-f="b" title="In đậm (Ctrl+B)"><b>B</b></button><button data-f="i" title="In nghiêng (Ctrl+I)"><i>I</i></button><button data-f="u" title="Gạch chân (Ctrl+U)"><u>U</u></button><button data-f="x" title="Bỏ định dạng">Bỏ</button></div></div>
+    <div class="f"><label>Cách xếp chữ</label>
+      <select id="sp"><option value="ink">Đều nhau (khoảng cách giữa các chữ bằng nhau)</option><option value="font">Theo phông chữ (tự nhiên)</option></select></div>
+    <div class="f"><label>Phông chữ</label>
+      <select id="font"><option>Mali</option><option>Itim</option><option>Patrick Hand</option><option>Dancing Script</option><option>Pacifico</option><option>Quicksand</option></select></div>
+    <div class="f"><label>Hoặc tải phông chữ mẫu của bạn (.ttf, .otf)</label><input type="file" id="fontf" accept=".ttf,.otf,.woff,.woff2"></div>
+    <div class="f"><label>Kiểu chữ</label>
+      <select id="mode">
+        <option value="solid">Đặc, đen (chữ mẫu)</option>
+        <option value="dim">Mờ (học sinh tô theo)</option>
+        <option value="outline">Viền nét đứt (học sinh tô theo)</option>
+      </select></div>
+  </div>
+  <div class="card cols" id="t3">
+    <div class="f"><label>Cỡ chữ <span class="v" id="v_size"></span></label><input type="range" id="size" min="20" max="160" step="1"></div>
+    <div class="f"><label>Khoảng cách dòng <span class="v" id="v_lh"></span></label><input type="range" id="lh" min="24" max="144" step="3.6"></div>
+    <div class="f"><label>Khoảng cách chữ <span class="v" id="v_ls"></span></label><input type="range" id="ls" min="-10" max="40" step="1"></div>
+    <div class="f"><label>Nâng/hạ cả dòng <span class="v" id="v_dy"></span></label><input type="range" id="dy" min="-60" max="140" step="0.5"></div>
+  </div>
+  <div class="card cols" id="t4">
+    <div class="f hint" id="selinfo">Bấm vào một chữ, hoặc kéo chuột quét qua nhiều chữ để chọn.</div>
+    <div class="f row">
+      <button id="bl" title="Sang trái">←</button><button id="bu" title="Lên">↑</button>
+      <button id="bd" title="Xuống">↓</button><button id="br" title="Sang phải">→</button>
+      <button id="bm">A−</button><button id="bp">A+</button>
+    </div>
+    <div class="f row"><button id="b0">Đặt lại chữ</button><button id="bsa">Chọn tất cả</button><button id="ball">Đặt lại toàn bộ chữ đã chỉnh</button></div>
+  </div>
+  <div class="card cols" id="t5">
+    <div class="f row"><button class="p" id="pdf">Tải PDF</button><button class="p" id="docx">Tải DOCX</button></div>
+    <div class="f hint">DOCX chứa cả trang dưới dạng hình ảnh (in đúng như đã soạn, không sửa chữ được trong Word).</div>
+  </div>
+  <div class="card cols" id="t6">
+    <div class="f"><label>Tên bài</label><input type="text" id="pname" placeholder="Ví dụ: Chữ hoa A - lớp 1">
+      <div class="row" style="margin-top:6px"><button class="p" id="psave">Lưu</button><button id="pexp">Xuất file .json</button></div></div>
+    <div class="f"><label>Các bài đã lưu</label>
+      <div class="proj"><select id="plist"></select><button id="pload">Mở</button><button id="pdel">Xóa</button></div></div>
+    <div class="f"><label>Mở từ file .json</label><input type="file" id="pimp" accept=".json,application/json"></div>
+    <div class="f hint">Bài lưu nằm trong trình duyệt của thiết bị này. Muốn dùng ở máy khác, hãy xuất file .json. Ảnh nền tải lên không được lưu kèm.</div>
+  </div>
+</div>
+</aside>
+<div class="stage">
+  <div class="zbar">
+    <button id="zm" title="Thu nhỏ">−</button>
+    <input type="range" id="zr" min="50" max="400" step="10" value="100">
+    <button id="zp" title="Phóng to">+</button>
+    <span id="zv">100%</span>
+    <button id="zf">Vừa khít</button>
+    <button id="pan" title="Giữ phím Space cũng kéo được trang">✋ Kéo trang</button>
+    <span class="fmt"><button data-f="b" title="In đậm (Ctrl+B)"><b>B</b></button><button data-f="i" title="In nghiêng (Ctrl+I)"><i>I</i></button><button data-f="u" title="Gạch chân (Ctrl+U)"><u>U</u></button><button data-f="x" title="Bỏ định dạng">Bỏ</button></span><span id="msg"></span>
+  </div>
+  <div id="warn"></div>
+  <div class="view" id="view"><div class="pad"><canvas id="cv" width="1224" height="1584"></canvas></div></div>
+  <div class="hint">Phóng to bằng nút +/−, thanh trượt hoặc Ctrl + lăn chuột. Khi đã phóng to, dùng thanh cuộn, hoặc bật “Kéo trang” (hoặc giữ phím Space) để kéo trang. Bấm vào chữ để chọn, kéo chuột trên vùng trống để quét chọn nhiều chữ (Shift: chọn thêm hoặc bỏ chọn). Quanh phần đã chọn có 8 nút nhỏ: 4 nút góc phóng to/thu nhỏ đều, 4 nút cạnh kéo giãn ngang hoặc dọc. Phím mũi tên nhích 1 điểm (Shift: 5 điểm), Ctrl+A chọn tất cả, Delete đặt lại các chữ đã chọn.</div>
+</div>
+</div>
+</div>
+<footer class="dev"><b>Phát triển bởi thầy Hợi</b><span>Trường Tiểu học Bảo Đài 2, TP Bắc Ninh</span><a href="tel:0967834824">0967 834 824</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
